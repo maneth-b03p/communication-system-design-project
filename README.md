@@ -10,7 +10,6 @@ Two‑Way Digital Paging System implemented with GNU Radio (Software Defined Rad
 - Key flowgraphs & custom blocks
 - Configurable parameters & notes
 - Troubleshooting
-- License & authors
 
 ## Project overview
 This project demonstrates a two‑way digital paging system using GNU Radio flowgraphs and custom embedded Python blocks. It supports end‑to‑end sending and receiving of PDUs, ACK feedback, optional AES‑GCM PDU encryption/decryption, and a simulated channel model for testing without radio hardware.
@@ -24,22 +23,13 @@ Prerequisites
   - numpy
   - pycryptodome (required for AES‑GCM encrypt/decrypt embedded blocks)
 
-Install common Python requirements:
-```bash
-# Example for Python packages
-pip install numpy pycryptodome
-# Install GNU Radio via your platform method if needed, e.g.:
-# conda install -c conda-forge gnuradio
-# or on Ubuntu:
-# sudo apt install gnuradio
-```
 
 Open a flowgraph in GNU Radio Companion (GRC):
 1. Open GRC (gnu-radio-companion).
 2. Open one of the flowgraph files under `Project Files/` (for example `sender_PDU.grc` or `receiver_PDU.grc`).
-3. Inspect and run the generated Python script from GRC, or save and run the generated `.py` file.
+3. Inspect and run the generated Python script from GRC.
 
-## Running the system — two modes
+## Running the system : two modes
 
 Simulation (no SDR hardware)
 - Use the channel model blocks present in the flowgraphs (blocks named `channels_channel_model`) to simulate noise, frequency/time offsets, and taps.
@@ -83,35 +73,25 @@ Important file notes:
 
 ## Configurable parameters (variables present in GRC)
 Common user‑exposed variables in the flowgraphs:
-- access_key — access code used by digital.correlate access search
-- samp_rate — sampling rate used throughout the chain (default ~1e6)
-- sps — samples per symbol
-- excess_bw — root raised cosine excess bandwidth
-- freq_offset, time_offset, noise_volt — simulation channel parameters
-- delay, equalizer — GUI sliders exposed for testing timing/delay and equalizer behavior
+- access_key : access code used by digital.correlate access search
+- samp_rate : sampling rate used throughout the chain (default ~1e6)
+- sps : samples per symbol
+- excess_bw : root raised cosine excess bandwidth
+- freq_offset, time_offset, noise_volt : simulation channel parameters
+- delay, equalizer : GUI sliders exposed for testing timing/delay and equalizer behavior
 
 Look at the GUI variable blocks in each `.grc` to see full names and default values.
 
 ## Troubleshooting & tips
 - If AES blocks print an error about PyCryptodome, install it:
   pip install pycryptodome
-- `pdu_file_writer` uses append mode — if you want a fresh file each run, change the block’s `append` parameter or the file path.
+- `pdu_file_writer` uses append mode -- if you want a fresh file each run, change the block’s `append` parameter or the file path.
 - If you see frequent CRC failures, reduce noise or adjust `noise_volt`, `freq_offset`, `time_offset` in the channel model to match expected channel conditions.
 - For hardware runs, replace the simulated channel block with your SDR source/sink and set correct center frequency and device arguments.
 - If the flowgraph uses Windows paths (e.g., `C:\\Users\\...`), change them to your platform’s path before running.
 
-## Suggested next steps / improvements
-- Move the embedded Python custom blocks into proper GNU Radio out-of-tree modules (for reuse and simpler packaging).
-- Add a small example script showing how to generate PDUs and run a TX+RX test end‑to‑end with the channel model.
-- Add a requirements.txt and/or environment.yml for reproducible installs.
 
 ## Documents
-- Communication_Design_Project.pdf — full design report with diagrams and results
-- Final_Presentation.pdf — slides used for the project final presentation
+- Communication_Design_Project.pdf : full design report with diagrams and results
+- Final_Presentation.pdf : slides used for the project final presentation
 
-## License & authors
-- Author: Project contributors (see repository owner)
-- License: (add a license file, e.g., MIT, Apache‑2.0) — currently not specified
-
-Contributors / Contact
-- If you want me to commit this README.md to the repository and/or add a requirements file and a minimal run script, tell me and I will create the commit.
