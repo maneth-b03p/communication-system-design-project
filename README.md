@@ -39,7 +39,10 @@ Hardware (USRP/other SDR)
 - Replace the throttle/channel model blocks with the appropriate source/sink (e.g., UHD: USRP source/sink) in GRC or configure the provided flowgraphs if you add hardware blocks.
 - Ensure sample rate and center frequencies are supported by the device.
 
-## What’s in this repository (annotated top-level tree)
+
+## What’s in this repository
+
+```
 Project Files/         # GNU Radio Companion flowgraphs (.grc) and supporting embedded blocks
   sender_PDU.grc       # Transmitter flowgraph — PDU creation, modulation, TX chain
   receiver_PDU.grc     # Receiver flowgraph — RX chain, demod, PDU extraction, deduplication & ACKs
@@ -48,6 +51,7 @@ Project Files/         # GNU Radio Companion flowgraphs (.grc) and supporting em
 Communication_Design_Project.pdf  # Project report (design document)
 Final_Presentation.pdf             # Final presentation slides
 README.md             # (this file)
+```
 
 ## Key flowgraphs & custom blocks (high level)
 
